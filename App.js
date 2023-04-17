@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react"
+import { StatusBar } from "expo-status-bar"
 
-export default function App() {
+import Route from "./src/navigation/Route"
+import LoginPage from "./src/screens/authentication/Login"
+
+const App = () => {
+  // isauthenticated hooks
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <>
       <StatusBar style="auto" />
-    </View>
-  );
+      {/* Route Component */}
+      {isAuthenticated ? <Route /> : <LoginPage setIsAuthenticated={setIsAuthenticated} />}
+    </>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
