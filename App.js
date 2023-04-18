@@ -2,8 +2,8 @@ import React, { useState } from "react"
 import { StatusBar } from "expo-status-bar"
 
 import Route from "./src/navigation/Route"
-import LoginPage from "./src/screens/authentication/Login"
-import SignupPage from "./src/screens/authentication/Signup"
+import AppContainer from "./src/navigation/auth/auth"
+import { NavigationContainer } from "@react-navigation/native"
 
 const App = () => {
   // isauthenticated hooks
@@ -13,7 +13,9 @@ const App = () => {
     <>
       <StatusBar style="auto" />
       {/* Route Component */}
-      {isAuthenticated ? <Route /> : <SignupPage />}
+      <NavigationContainer>
+        <AppContainer />
+      </NavigationContainer>
     </>
   )
 }

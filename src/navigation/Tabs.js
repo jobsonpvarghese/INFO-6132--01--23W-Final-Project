@@ -7,6 +7,8 @@ import { Ionicons } from "react-native-vector-icons"
 import Home from "../screens/Home"
 import Goals from "../screens/Goals"
 import Settings from "../screens/Settings"
+import LoginPage from "../screens/authentication/Login"
+import SignUp from "../screens/authentication/Signup"
 
 // Tab Navigator
 const Tab = createBottomTabNavigator()
