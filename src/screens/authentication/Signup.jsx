@@ -20,6 +20,7 @@ const SignUp = props => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Sign Up</Text>
       <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" />
       <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
       <Button title="Sign up" onPress={handleSignUp} />
