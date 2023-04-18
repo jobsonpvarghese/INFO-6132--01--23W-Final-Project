@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react"
 import { StyleSheet, Text, TextInput, View, Button, Alert } from "react-native"
 
-import { setAuthenticated } from "../../redux/actions"
+import { setAuthenticated, setUserId } from "../../redux/actions"
 import { connect } from "react-redux"
 import { logIn } from "../../database/config"
 
-function LoginPage({ isAuthenticated, setAuthenticated }) {
+function LoginPage({ isAuthenticated, setAuthenticated, setUserId }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const handleLogin = () => {
     logIn(email, password).then(res => {
       if (res) {
-        console.log(res._tokenResponse.uid)
+        setUserId(res.user.id)
         setAuthenticated(true)
       } else {
         Alert.alert("Login Failed", "Please check your credentials")
@@ -40,7 +40,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = { setAuthenticated }
+const mapDispatchToProps = { setAuthenticated, setUserId }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
 
