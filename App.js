@@ -1,21 +1,26 @@
 import React, { useState } from "react"
 import { StatusBar } from "expo-status-bar"
 
-import Route from "./src/navigation/Route"
-import AppContainer from "./src/navigation/auth/auth"
 import { NavigationContainer } from "@react-navigation/native"
 
-const App = () => {
-  // isauthenticated hooks
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+import { persistor, store } from "./src/redux/store"
+import { Provider } from "react-redux"
+import { PersistGate } from "redux-persist/lib/integration/react"
 
+import Route from "./src/navigation/Route"
+import AppContainer from "./src/navigation/auth/auth"
+import { Text } from "react-native"
+
+const App = () => {
   return (
     <>
-      <StatusBar style="auto" />
-      {/* Route Component */}
-      <NavigationContainer>
-        <AppContainer />
-      </NavigationContainer>
+      <Provider store={store}>
+        <PersistGate loading={<Text>Loading View</Text>} persistor={persistor}>
+          <StatusBar style="auto" />
+          {/* Route Component */}
+          <Route />
+        </PersistGate>
+      </Provider>
     </>
   )
 }

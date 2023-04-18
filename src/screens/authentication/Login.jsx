@@ -1,14 +1,21 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { StyleSheet, Text, TextInput, View, Button } from "react-native"
 
-export default function LoginPage(props) {
+import { setAuthenticated } from "../../redux/actions"
+import { connect } from "react-redux"
+
+function LoginPage({ isAuthenticated, setAuthenticated }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleLogin = () => {
+  const handleLogin = ({}) => {
     // TODO: Implement login functionality
-    props.setIsAuthenticated(true)
+    setAuthenticated(true)
   }
+
+  useEffect(() => {
+    console.log(isAuthenticated)
+  }, [isAuthenticated])
 
   return (
     <View style={styles.container}>
@@ -19,6 +26,16 @@ export default function LoginPage(props) {
     </View>
   )
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isAuthenticated: state.todos.isAuthenticated
+  }
+}
+
+const mapDispatchToProps = { setAuthenticated }
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
 
 const styles = StyleSheet.create({
   container: {
