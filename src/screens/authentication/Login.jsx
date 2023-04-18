@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react"
-import { StyleSheet, Text, TextInput, View, Button } from "react-native"
+import { StyleSheet, Text, TextInput, View, Button, Alert } from "react-native"
 
 import { setAuthenticated } from "../../redux/actions"
 import { connect } from "react-redux"
+import { logIn } from "../../database/config"
 
 function LoginPage({ isAuthenticated, setAuthenticated }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleLogin = ({}) => {
-    // TODO: Implement login functionality
-    setAuthenticated(true)
+  const handleLogin = () => {
+    logIn(email, password)
+      .then(() => {
+        setAuthenticated(true)
+      }
+      )
+      .catch(error => {
+        Alert.alert("Error", error.message)
+      }
+      )
   }
 
   useEffect(() => {
