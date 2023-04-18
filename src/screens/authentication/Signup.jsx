@@ -1,25 +1,38 @@
 import React, { useState } from "react"
-import { Button, Text, TextInput, View } from "react-native"
-import { auth } from "../../database/config"
+import { StyleSheet, View, TextInput, Button, Alert } from "react-native"
+import { createUser } from "../../database/config"
 
-export default function AuthScreen() {
+const SignUp = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSignup = async () => {
-    try {
-      await auth.createUserWithEmailAndPassword(email, password)
-      console.log("User signed up successfully.")
-    } catch (error) {
-      console.error(error)
-    }
+  const handleSignUp = () => {
+    createUser(email, password)
   }
 
   return (
-    <View>
-      <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
-      <TextInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
-      <Button title="Signup" onPress={handleSignup} />
+    <View style={styles.container}>
+      <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" />
+      <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
+      <Button title="Sign up" onPress={handleSignUp} />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  input: {
+    width: "80%",
+    height: 50,
+    marginVertical: 10,
+    paddingHorizontal: 15,
+    borderWidth: 1,
+    borderRadius: 10
+  }
+})
+
+export default SignUp
