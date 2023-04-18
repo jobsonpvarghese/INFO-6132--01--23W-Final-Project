@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { setAuthenticated } from "../redux/actions"
 
 // Your web app's Firebase configuration
@@ -28,16 +28,16 @@ const createUser = async (email, password) => {
   }
 }
 
+//login function with return true or false
 const logIn = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
-    setAuthenticated(true)
-    console.log("Config: true", userCredential._tokenResponse.email)
+    console.log(userCredential.email)
+    return userCredential
   } catch (error) {
     console.log("error", error)
-    setAuthenticated(false)
+    return false
   }
 }
 
-
-export { createUser, db, logIn}
+export { createUser, db, logIn }

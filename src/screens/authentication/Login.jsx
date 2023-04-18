@@ -10,15 +10,14 @@ function LoginPage({ isAuthenticated, setAuthenticated }) {
   const [password, setPassword] = useState("")
 
   const handleLogin = () => {
-    logIn(email, password)
-      .then(() => {
+    logIn(email, password).then(res => {
+      if (res) {
+        console.log(res._tokenResponse.uid)
         setAuthenticated(true)
+      } else {
+        Alert.alert("Login Failed", "Please check your credentials")
       }
-      )
-      .catch(error => {
-        Alert.alert("Error", error.message)
-      }
-      )
+    })
   }
 
   useEffect(() => {
