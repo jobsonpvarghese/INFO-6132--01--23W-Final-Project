@@ -9,13 +9,13 @@ const SignUp = props => {
 
   console.log(props)
   const handleSignUp = () => {
-    // createUser(email, password)
-    //   .then(() => {
-    //     Alert.alert("Success", "User created successfully.")
-    //   })
-    //   .catch(error => {
-    //     Alert.alert("Error", error.message)
-    //   })
+    createUser(email, password)
+      .then(() => {
+        Alert.alert("Success", "User created successfully.")
+      })
+      .catch(error => {
+        Alert.alert("Error", error.message)
+      })
   }
 
   return (

@@ -1,7 +1,8 @@
-import { IS_AUTH } from "../actionTypes"
+import { IS_AUTH, USER_ID } from "../actionTypes"
 
 const initialState = {
-  isAuthenticated: false
+  isAuthenticated: false,
+  userId: null
 }
 
 export default function (state = initialState, action) {
@@ -10,6 +11,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isAuthenticated: action.payload.value
+      }
+    case USER_ID:
+      return {
+        ...state,
+        userId: action.payload.value
       }
 
     default:
