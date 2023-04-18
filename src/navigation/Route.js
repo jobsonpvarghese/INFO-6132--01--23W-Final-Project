@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 // Screen Import
 import Detail from "../screens/Detail"
 
+import Login from "../screens/authentication/Login"
+
 // Nested Stack Navigator (Tab)
 import Tabs from "./Tabs"
 
@@ -23,6 +25,7 @@ export default function Route() {
             }}
           />
           <Stack.Screen name="Details" component={Detail} />
+          <Stack.Screen name="Login" component={Login} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
