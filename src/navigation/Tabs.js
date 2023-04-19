@@ -5,19 +5,29 @@ import { Ionicons } from "react-native-vector-icons"
 
 // Screen Import
 import Home from "../screens/Home"
-import Goals from "../screens/Goals"
+import Expense from "../screens/Expense"
 import Settings from "../screens/Settings"
-import LoginPage from "../screens/authentication/Login"
-import SignUp from "../screens/authentication/Signup"
+import { getRes } from "../database/crud"
+import { useState } from "react"
 
 // Tab Navigator
 const Tab = createBottomTabNavigator()
 
 const Tabs = () => {
+  const [expenses, setExpenses] = useState([])
+
+  const getData = () => {
+    getRes(setExpenses)
+  }
+
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} options={styles.home} />
-      <Tab.Screen name="Goals" component={Goals} options={styles.Goals} />
+      <Tab.Screen name="Home" options={styles.home}>
+        {() => <Home data={expenses} getData={getData} />}
+      </Tab.Screen>
+      <Tab.Screen name="Expense" options={styles.Goals}>
+        {() => <Expense getData={getData} />}
+      </Tab.Screen>
       <Tab.Screen name="Settings" component={Settings} options={styles.setting} />
     </Tab.Navigator>
   )

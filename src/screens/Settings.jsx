@@ -1,12 +1,13 @@
 import { View, Text, Button } from "react-native"
 import React from "react"
 
-import { setAuthenticated } from "../redux/actions"
+import { setAuthenticated, setUserId } from "../redux/actions"
 import { connect } from "react-redux"
 
 const Settings = ({ setAuthenticated }) => {
   const logOut = () => {
     setAuthenticated(false)
+    setUserId("")
   }
 
   return (
@@ -24,6 +25,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = { setAuthenticated }
+const mapDispatchToProps = { setAuthenticated, setUserId }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings)

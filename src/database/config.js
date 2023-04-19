@@ -19,6 +19,8 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 const auth = getAuth()
+
+// signup fucntion
 const createUser = async (email, password) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
@@ -28,11 +30,10 @@ const createUser = async (email, password) => {
   }
 }
 
-//login function with return true or false
+//login function
 const logIn = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
-    console.log(userCredential)
     return userCredential
   } catch (error) {
     console.log("error", error)
@@ -40,4 +41,9 @@ const logIn = async (email, password) => {
   }
 }
 
-export { createUser, db, logIn }
+// logout fucntion
+const logOut = () => {
+  auth.signOut()
+}
+
+export { db, createUser, logIn, logOut }

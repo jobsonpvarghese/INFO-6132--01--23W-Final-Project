@@ -5,24 +5,20 @@ import { setAuthenticated, setUserId } from "../../redux/actions"
 import { connect } from "react-redux"
 import { logIn } from "../../database/config"
 
-function LoginPage({ isAuthenticated, setAuthenticated, setUserId }) {
+function LoginPage({ isAuthenticated, userId, setAuthenticated, setUserId }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const handleLogin = () => {
     logIn(email, password).then(res => {
       if (res) {
-        setUserId(res.user.id)
+        setUserId(res.user.uid)
         setAuthenticated(true)
       } else {
         Alert.alert("Login Failed", "Please check your credentials")
       }
     })
   }
-
-  useEffect(() => {
-    console.log(isAuthenticated)
-  }, [isAuthenticated])
 
   return (
     <View style={styles.container}>
