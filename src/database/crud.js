@@ -34,12 +34,11 @@ export const updateData = async (id, data) => {
     })
 }
 
-export const deleteExpense = async (id, cb) => {
+export const deleteExpense = async id => {
   const dbDoc = doc(db, "posts", id)
   deleteDoc(dbDoc)
     .then(() => {
       console.log("Successfully deleted!")
-      cb()
     })
     .catch(error => {
       console.error("Error:", error)

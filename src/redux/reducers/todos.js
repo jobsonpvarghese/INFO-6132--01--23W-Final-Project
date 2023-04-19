@@ -1,8 +1,9 @@
-import { IS_AUTH, USER_ID } from "../actionTypes"
+import { IS_AUTH, USER_ID, USER_EMAIL } from "../actionTypes"
 
 const initialState = {
   isAuthenticated: false,
-  userId: null
+  userId: null,
+  userEmail: null
 }
 
 export default function (state = initialState, action) {
@@ -16,6 +17,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         userId: action.payload.value
+      }
+
+    case USER_EMAIL:
+      return {
+        ...state,
+        userEmail: action.payload.value
       }
 
     default:
